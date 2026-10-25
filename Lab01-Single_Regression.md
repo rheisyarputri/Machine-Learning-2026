@@ -255,6 +255,7 @@ Slope: 1.6667
 MAE Test: 0.0889 °C
 
 MAE sebesar 0.0889 °C berarti rata-rata selisih absolut antara temperatur aktual dan temperatur hasil prediksi model adalah sekitar 0.0889 °C.
+
 ## 7. Eksperimen D — Prediksi interaktif dari terminal serial (10 menit)
 
 Masih di **`02_training.py`**, boleh tambahkan bagian berikut di akhir setelah evaluasi. ESP32 akan menerima input waktu operasi melalui Shell Thonny.
@@ -325,12 +326,49 @@ Ubah **hanya data training**, lalu lakukan training dan evaluasi ulang dengan **
 Kumpulkan laporan 1–2 halaman yang memuat:
 
 1. Foto/screenshot keluaran Thonny dari eksperimen B, C, dan D.
+
+Exprtimen B
+ 
+ <img width="612" height="255" alt="Screenshot 2026-10-25 191809" src="https://github.com/user-attachments/assets/ae3ef980-6835-42c6-9d79-f3ee7f3c8bbc" />
+
+ 
+Expretiment C
+ 
+ <img width="841" height="407" alt="Screenshot 2026-10-25 192303" src="https://github.com/user-attachments/assets/e536a020-c6e2-4df2-bb29-36f060117227" />
+
+ 
+Experiment D
+ 
+<img width="742" height="482" alt="Screenshot 2026-10-25 192932" src="https://github.com/user-attachments/assets/f7bae6dd-8de6-4216-8ef5-9b3c46bbce0d" />
+
+
 2. Persamaan regresi hasil training ESP32 serta MAE testing.
+
+Hasil training di ESP32: ŷ = 28,0222 + 1,6667x. MAE pada data testing 0,0889 °C, jadi rata-rata prediksi meleset sekitar 0,09 °C saja.
+
 3. Tabel hasil eksperimen E.
+
+| Skenario | Jumlah data training | Intercept (`b0`) | Slope (`b1`) | MAE testing (°C) |
+|---|---:|---:|---:|---:|
+| 1 — Asli | 9 | 28.0222 | 1.6667 | 0.0889 |
+| 2 — Data dikurangi | 6 | 27.9385 | 1.6654 | 0.1673 |
+| 3 — Satu outlier | 9 | 29.1444 | 1.6667 | 1.0444 |
+
 4. Jawaban tiga pertanyaan refleksi berikut:
    - Apa perbedaan training dan inference dalam praktikum ini?
+   
+   Training adalah proses ESP32 menghitung b0 dan b1 dari data (fungsi fit_linear_regression). Inference adalah proses memakai b0 dan b1 itu untuk memprediksi temperatur dari waktu tertentu (fungsi predict).
+   
    - Apakah sebuah prediksi tetap bisa dihitung meskipun berada di luar rentang training? Mengapa prediksi itu perlu diwaspadai?
+   
+   Bisa, karena rumusnya tetap jalan (misalnya untuk 20 menit). Tapi itu ekstrapolasi: model hanya dilatih pada data 0-8 menit dan belum divalidasi di luar itu. Temperatur mesin asli bisa nonlinear (misalnya mencapai titik jenuh), jadi hasilnya bisa meleset jauh.
+   
    - Apa keuntungan dan keterbatasan melakukan training model sederhana langsung di ESP32 dibanding hanya melakukan inference?
+   
+	•	Keuntungan: tidak perlu laptop atau cloud, model bisa beradaptasi langsung di perangkat, dan data tidak perlu dikirim keluar.
+	
+	•	Keterbatasan: memori dan CPU terbatas, hanya cocok untuk model sederhana dan data kecil, dan OLS dengan data besar tidak praktis.
+
 
 ## 11. Kriteria keberhasilan
 
