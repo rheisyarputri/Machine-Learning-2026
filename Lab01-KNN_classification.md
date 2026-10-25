@@ -280,7 +280,7 @@ Angka di atas merupakan hasil acuan pada Python untuk dataset ini; output MicroP
 
 ## jawaban:
 
-(foto hasil eksperimen)
+<img width="711" height="281" alt="Screenshot 2026-10-25 210306" src="https://github.com/user-attachments/assets/98886d2d-6acc-4a03-8e11-4e0973d82688" />
 
 ## 8. Eksperimen B — Input interaktif melalui Thonny (15 menit)
 
@@ -310,7 +310,7 @@ Perhatikan tiga tetangga terdekat. Tuliskan alasan prediksi berdasarkan **voting
 
 ## Jawaban:
 
-(foto hasil ex)
+<img width="720" height="547" alt="Screenshot 2026-10-25 210556" src="https://github.com/user-attachments/assets/c177a093-ee8d-4bf0-9292-ff8c829b8128" />
 
 Tiga tetangga terdekat semuanya berlabel NORMAL, jadi voting 3 lawan 0 untuk NORMAL.
 
@@ -328,7 +328,7 @@ Untuk memperdalam, catat minimal satu contoh yang prediksinya berubah ketika K a
 
 ## jawaban:
 
-(foto hasil ex)
+<img width="723" height="741" alt="Screenshot 2026-10-25 211853" src="https://github.com/user-attachments/assets/dba196ba-35e9-46c3-a2d1-7d8ca83539f1" />
 
 Hasil untuk T=57, V=5.5
 K | Prediksi | Voting (NORMAL : WARNING) |
@@ -364,7 +364,8 @@ $$
 Bandingkan hasil accuracy dengan angka acuan pada Eksperimen A. Jelaskan mengapa hasil evaluasi tidak boleh hanya dihitung pada `TRAIN`.
 
 ## jawaban:
-(foto)
+
+<img width="623" height="328" alt="Screenshot 2026-10-25 213059" src="https://github.com/user-attachments/assets/7bce72aa-b55a-44c2-b064-b1b75b789d6f" />
 
 Pada K=3 dengan scaling, accuracy data test adalah 75,00% (9 dari 12), sama dengan angka acuan Eksperimen A. Evaluasi tidak boleh hanya pada TRAIN karena data TRAIN adalah tetangga referensi KNN itu sendiri: setiap titik akan menemukan dirinya sebagai tetangga terdekat, sehingga accuracy tampak tinggi padahal model hanya “mengingat”. Kemampuan pada data baru hanya bisa diukur dengan data test yang terpisah.
 
